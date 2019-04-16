@@ -1,17 +1,29 @@
 {
-  "name": "blog",
+  "name": "gitblog",
   "version": "0.1.0",
+  "homepage": "https://desvelao.github.io/blog",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.3.1",
+    "firebase": "^5.8.6",
+    "gh-pages": "^2.0.1",
+    "markdown-it": "^8.4.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-redux": "^6.0.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.5",
+    "reactstrap": "^7.1.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

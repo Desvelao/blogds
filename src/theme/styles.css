@@ -1,0 +1,57 @@
+:root {
+  --th-color-primary: red;
+  --th-color-secondary: red;
+  --th-color-terciary: red;
+}
+
+.th-text-primary{
+    color : var(--th-color-primary)
+}
+
+.th-text-secondary{
+    color : var(--th-color-secondary)
+}
+
+.th-text-terciary{
+    color : var(--th-color-terciary)
+}
+
+.ds-card{
+    border-radius: 0.5em;
+    padding: 0.5em;
+    background: rgb(240, 240, 240);
+    box-shadow: 0 0 2px rgba(0,0,0,.5);
+}
+
+.ds-card-title{
+    color: var(--th-color-primary);
+}
+
+.ds-card-ribbon{
+    border-left: 3px solid;
+}
+
+.ds-card-ribbon-red{
+    border-color: red
+}
+
+.selected-highlight, .hover-shadow:hover{
+    box-shadow: 0 0 4px rgba(0,0,0,.5);
+}
+
+.top1em{
+    top: 1em;
+}
+
+.right1em{
+    right: 1em;
+}
+
+.button-delete-pos-image{
+    top: 1em;
+    right: 1.5em;
+}
+
+.th-selected{
+    color: red
+}
