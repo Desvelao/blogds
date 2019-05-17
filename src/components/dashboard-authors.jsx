@@ -10,14 +10,14 @@ export default compose(withRouter,withStore)(class DashboardAuthors extends Comp
     render(){
         return (
             <div>
-                <div className="th-category-title">{locale.Authors}</div>
+                <div className="th-title">{locale.Authors}</div>
                 <div className='row'>
                     {this.props.authors.map(a => {
                         const author = AuthorModel.getPosts(a, this.props.posts)
                         return (
                             <div className='col-md-4' md='4' key={author.id}>
-                                <div className='card my-1' key={author.id} >
-                                    <div className='card-body d-flex p-2 justify-content-between align-items-center'>
+                                <div className='th-card my-1' key={author.id} >
+                                    <div className='th-card-body d-flex p-2 justify-content-between align-items-center'>
                                         <div>
                                             <AuthorAvatarNameSpan {...author} hovername className='mr-2'/>
                                         </div>

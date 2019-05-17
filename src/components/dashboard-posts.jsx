@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
-import {
-    Container, Row, Col, Input, InputGroup, InputGroupAddon, Form, FormGroup, FormText, Label,
-    Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, NavItem
-} from 'reactstrap'
 import PostModel from '../backend/structures/post'
 import withStore from '../hocs/with-store'
 import { withRouter } from 'react-router'
-import { Link } from 'react-router-dom'
+import Link from './link'
 import routes from '../config/routes'
 import { compose } from 'redux'
-import Button, { ButtonEdit, ButtonRemove, ButtonPrimary } from '../components/button'
-import { AuthorAvatar } from '../components/author'
+import Button, { ButtonEdit, ButtonRemove, ButtonPrimary } from './button'
+import { AuthorAvatar } from './author'
 import locale from '../config/locale'
 import withNotifications from '../hocs/with-notifications'
+
 
 export default compose(withRouter, withStore, withNotifications)(class DashboardPosts extends Component{
     newPost() {
@@ -36,17 +33,17 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
         return (
             <div>
                 <div className='mb-2'>
-                    <span className='th-category-title mr-2'>{locale.Posts}</span>
+                    <span className='th-title mr-2'>{locale.Posts}</span>
                     <ButtonPrimary onClick={(e) => this.props.history.push(routes.newpost)}>{locale.NewPost}</ButtonPrimary>
                 </div>
                 <hr/>
-                <Row>
+                <div className='row'>
                     {this.props.posts.map(p => {
                         const post = PostModel.getWithAuthor(p, this.props.authors)
                         return (
-                            <Col key={post.id} md='4'>
-                                <Card key={post.id} className='mb-1'>
-                                    <CardBody className='p-2'>
+                            <div className='col-md-4' key={post.id}>
+                                <div className='th-card mb-1'>
+                                    <div className='th-card-body p-2'>
                                         <div className='d-flex justify-content-between'>
                                             <div>
                                                 <AuthorAvatar {...post.author} hovername className='mr-2'/>
@@ -56,8 +53,8 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
                                                 {this.props.authUser && post.author.id === this.props.authUser.uid && (
                                                     <div>
                                                         {post.publish ? null : <Button onClick={() => this.publishPost(post)} className='p-1 mr-1'><i className='fas fa-upload text-success'/></Button>}
-                                                        <ButtonEdit onClick={() => this.editPost(post)} className='mr-1'/>
-                                                        <ButtonRemove onClick={() => this.deletePost(post)} className='mr-1' disabled={false}/>
+                                                        <ButtonEdit onClick={() => this.editPost(post)} className='p-1 mr-1'/>
+                                                        <ButtonRemove onClick={() => this.deletePost(post)} className='p-1 mr-1' disabled={false}/>
                                                     </div>
                                                 )}
                                             </div>
@@ -67,12 +64,12 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
                                             <div className=''>{post.publish || locale.NotPublished}</div>
                                         </div>
                                         
-                                    </CardBody>
-                                </Card>
-                            </Col>
+                                    </div>
+                                </div>
+                            </div>
                         )
                     })}
-                </Row>
+                </div>
             </div>
         )
     }

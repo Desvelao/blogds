@@ -20,7 +20,7 @@ export default compose(withStore, withNotifications)(class extends Component{
         return (
             <>
                 <div className='mb-4'>
-                    <span className="th-category-title mr-2">{locale.Images}</span>
+                    <span className="th-title mr-2">{locale.Images}</span>
                     <ModalUploadImage classname='d-inline' titleOpenButton={locale.UploadImage} saveOn='images' labeltitle={locale.UpdatePostImage} onFinishUploadFile={(uploaded) => this.onFinishUploadFile(uploaded)} />
                 </div>
                 <hr/>
@@ -30,7 +30,7 @@ export default compose(withStore, withNotifications)(class extends Component{
                         <div className='col-md-4 mb-2' key={image.id}>
                             <div>
                                 <img src={image.url} alt={image.id} className='w-100'/>
-                                <ButtonRemove className='position-absolute button-delete-pos-image' onClick={() => this.deleteImage(image)}/>
+                                <ButtonRemove className='position-absolute th-button-delete-pos-image' onClick={() => this.deleteImage(image)}/>
                             </div>
                         </div>
                     )})}

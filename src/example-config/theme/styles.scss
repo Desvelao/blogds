@@ -59,14 +59,14 @@ body{
     }
 }
 
-.th-category-title{
+.th-title{
     @extend .th-color-primary;
     font-weight: 600;
 }
 
 // Posts
 .th-post-title{
-    @extend .th-category-title;
+    @extend .th-title;
     font-size: 2.5rem;
     text-align: center;
 }

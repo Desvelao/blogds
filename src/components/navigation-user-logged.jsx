@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withAuth from "../hocs/with-auth"
 import withAuthorization from '../hocs/with-authorization'
 import { AuthorAvatar } from './author'
-import { Link } from 'react-router-dom'
+import Link from './link'
 import { withRouter } from 'react-router'
 import { NavItem, NavLink, UncontrolledDropdown, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
 import { compose } from 'redux'

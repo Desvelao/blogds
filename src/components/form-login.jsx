@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import { Alert, Container, Row, Col, Form, FormGroup } from 'reactstrap'
-import { Link } from 'react-router-dom'
+import Link from './link'
 
 import { withRouter } from 'react-router'
-import WithStore from '../hocs/with-store'
-
 import InputForm from './input-form'
 import Button from './button'
 import routes from '../config/routes'
@@ -34,24 +31,24 @@ export default withRouter(class FormNewPost extends Component {
     render() {
         return (
             <div>
-                <Form className='mb-2'>
-                    <Row className='justify-content-center'>
-                        <Col md='4'>
+                <form className='mb-2'>
+                    <div className='row justify-content-center'>
+                        <div className='col-md-4'>
                             <div className='text-center'>{locale.Login}</div>
-                            <FormGroup row>
-                                <Col xs='12'>
+                            <div className='for-group row'>
+                                <div className='col-12'>
                                     <InputForm labelid='email' labeltitle={locale.Email} value={this.state.email} onChange={(e) => this.handleState('email', e)} />
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Col xs='12'>
+                                </div>
+                            </div>
+                            <div className='for-group row'>
+                                <div className='col-12'>
                                     <InputForm type='password' labelid='password' labeltitle={locale.Password} value={this.state.password} onChange={(e) => this.handleState('password', e)} />
-                                </Col>
-                            </FormGroup>
+                                </div>
+                            </div>
                             <Button className='btn-primary' onClick={(e) => this.send(e)}>{locale.Login}</Button>
-                        </Col>
-                    </Row>
-                </Form>
+                        </div>
+                    </div>
+                </form>
                 <Link to={routes.resetpassword}>{locale.RememberPassword}</Link>
             </div>
         )

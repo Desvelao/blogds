@@ -12,14 +12,7 @@ const RenderPost = ({ id, title, desc, content, image, publish, author }) => {
     console.log(author)
     return (
         <div className=''>
-            {image && (<div className='mb-2' style={{
-                width: '100%',
-                height: '40vh',
-                // position: 'relative',
-                backgroundImage: `url(${image})`,
-                backgroundPosition: 'center center',
-                // backgroundRepeat: 'no-repeat'
-            }} />)}
+            {image && <img src={image} className='th-post-image' alt="post header" />}
             {/* <div className='w-100'><img src={image} alt={`${title}'s image`}/></div> */}
             <Container className='content mb-2'>
                 <div className='mb-4'>

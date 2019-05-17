@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import Link from './link'
 import { withRouter } from 'react-router'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
 import { compose } from 'redux'
@@ -23,7 +23,7 @@ export default compose(withStore, withRouter)(
             return (
                 <Navbar color="" fixed='' light expand="md">
                     {/* <img height={30} width={30} className='dv-border-circle d-inline-block align-top' src={Roshan} />  */}
-                    <Link className='navbar-brand' to={routes.home}>{blogConfig.blogName}</Link>
+                    <Link className='th-blog-title' to={routes.home}>{blogConfig.blogName}</Link>
                     {/* <NavbarToggler onClick={() => this.handleToggleNavbar()} className="" /> */}
                     <span className='ml-auto'>
                         <NavigationUserLogged />

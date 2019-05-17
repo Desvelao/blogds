@@ -49,7 +49,7 @@ export default compose(withRouter,withAuthorization)(class Dashboard extends Com
                 <div className="row py-3">
                     <div className='col-md-2' style={{ height: '100vh', width: '10%', minWidth: '80px', /*background: 'red'*/ }}>
                         <div className='nav flex-column'>
-                            {dashlinks.map(link => (<div className='nav-link' key={link.route} ><NavLink to={link.route} activeClassName="th-selected" exact>{link.text}</NavLink></div>))}
+                            {dashlinks.map(link => (<div className='nav-link' key={link.route} ><NavLink to={link.route} activeClassName="th-link-active" exact>{link.text}</NavLink></div>))}
                         </div>
                     </div>
                     <div className='col'>

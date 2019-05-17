@@ -83,30 +83,30 @@ export default compose(withStore, withNotifications, withRouter)(class FormNewPo
             <div>
                 <form className='row justify-content-center'>
                     <div className='col-md-4'>
-                        <div className='text-center th-category-title'>{locale.SignUp}</div>
+                        <div className='text-center th-title'>{locale.SignUp}</div>
                         <FormGroup row>
-                            <div className='col-xs-12'>
+                            <div className='col-12'>
                                 <InputForm labelid='email' labeltitle={locale.Email} value={this.state.email} onChange={(e) => this.handleState('email', e)} />
                             </div>
                         </FormGroup>
                         <FormGroup row>
-                            <div className='col-xs-12'>
+                            <div className='col-12'>
                                 <InputForm labelid='display-name' labeltitle={locale.DisplayName} value={this.state.displayName} onChange={(e) => this.handleState('displayName', e)} />
                             </div>
                         </FormGroup>
                         <FormGroup row>
-                            <div className='col-xs-12'>
+                            <div className='col-12'>
                                 <InputForm type='password' labelid='password' labeltitle={locale.Password} value={this.state.password} onChange={(e) => this.handleState('password', e)} />
                             </div>
                         </FormGroup>
                         <FormGroup row>
                                 <InputForm type='password' labelid='confirm-password' labeltitle={locale.ConfirmPassword} value={this.state.confirmPassword} onChange={(e) => this.handleState('confirmPassword', e)} />
-                            {/* <div className='col-xs-12'>
+                            {/* <div className='col-12'>
                             </div> */}
                         </FormGroup>
                         {configBlog.requiredKeypass && (
                             <FormGroup row>
-                                <div className='col-xs-12'>
+                                <div className='col-12'>
                                     <InputForm labelid='keypass' labeltitle={locale.Keypass} value={this.state.keypass} onChange={(e) => this.handleState('keypass', e)} />
                                 </div>
                             </FormGroup>

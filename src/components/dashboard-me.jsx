@@ -58,12 +58,12 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
         const { user, editProfile } = this.state
         return (
             <div>
-                <div className='th-category-title'>Me</div>
+                <div className='th-title'>Me</div>
                 <div>Me info</div>
                 <hr/>
                 <div>
                     <div>
-                        <span className="th-category-title">{locale.Account}</span>
+                        <span className="th-title">{locale.Account}</span>
                         <ButtonEdit className='mx-2 p-1' disabled={!editProfile} onClick={(e) => this.toggleEditProfile(e)}/>
                     </div>
                     <form className='mb-2'>
@@ -82,7 +82,7 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
                     </form>
                     <hr className='mb-2'/>
                     <div className=''>
-                        <div className="th-category-title mb-2">{locale.ResetPassword}</div>
+                        <div className="th-title mb-2">{locale.ResetPassword}</div>
                         <ButtonWarning onClick={(e) => this.resetPassword(e)}>{locale.ResetPassword} {user.email}</ButtonWarning>
                     </div>
                 </div>

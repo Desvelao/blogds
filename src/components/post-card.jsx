@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import Link from './link'
 import { withRouter } from 'react-router'
 import { AuthorAvatarName } from './author'
 import { timeToRead } from '../util/post'
@@ -10,17 +10,18 @@ export default withRouter(
         author = Author.findByID(author, authors)
         const timeRead = timeToRead(content)
         return (
-            <Link to={`/post/${id}`} className='text-decoration-none'>
-                <div className="card">
-                    {image && <img className='card-img-top' width='100%' src={image} alt={`${title}`} onError={(e) => { e.target.onError = null; e.target.src = "" }} style={{ height: '8em' }} />}
-                    <div className='card-body p-2'>
-                        <div className='card-title text-primary mb-0 text-center'>{title}</div>
-                        {/* <div className='text-muted text-center'>{desc}</div> */}
-                        <hr className='my-1' />
-                        <AuthorAvatarName {...author} link />
-                        <span className='text-muted'> · {timeRead}</span>
-                    </div>
+            <div className="th-card">
+                {image && <Link to={`/post/${id}`} className='text-decoration-none'>
+                    <img className='th-card-image' src={image} alt={`${title}`} onError={(e) => { e.target.onError = null; e.target.src = "" }}/>
+                </Link>}
+                <div className='th-card-body'>
+                    <Link to={`/post/${id}`} className='th-card-title'>{title}</Link>
+                    {/* <div className='text-muted text-center'>{desc}</div> */}
+                    <hr className='my-1' />
+                    <AuthorAvatarName {...author} link />
+                    <span className='th-color-muted'> · {timeRead}</span>
                 </div>
-            </Link>
+            </div>
+            
     )}
 )

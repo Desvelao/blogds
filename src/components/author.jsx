@@ -1,7 +1,8 @@
 import React from 'react'
+import authorAvatarDefault from '../config/assets/author_avatar_default.jpg'
 
 export const AuthorAvatar = ({ avatar, name, className='', hovername = false}) =>
-    (<img className={`rounded-circle ${className}`} title={hovername ? name : ''} height="24" src={avatar} alt={`${name}'s avatar`}/>)
+    (<img className={`th-author-avatar ${className}`} title={hovername ? name : ''} src={avatar} onError={(e) => {e.target.onError = null; e.target.src=authorAvatarDefault}} alt={`${name}'s avatar`}/>)
 
 export const AuthorAvatarName = ({ avatar, name, url='#', className = '', link=false}) => (
     <span>

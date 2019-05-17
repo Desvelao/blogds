@@ -38,31 +38,25 @@ class App extends Component {
         <Provider store={store}>
           <BrowserRouter basename={process.env.PUBLIC_URL}>
               <div className='mb-3'>
-              {/* <div> */}
                 <Navigation />
                 {this.state.loading ? <Loading className='text-center'/> : (
                   <Switch>
                     <Route path={routes.dashboard} component={Dashboard} />
                     <Route path={routes.post + '/:post_id'} component={Post} />
-                    <div className='container content'>
-                      <div className='mt-3'>
+                    <div className='container content mt-3'>
+                      {/* <div className='mt-3'> */}
                         <Switch>
-                          {/* <Route exact path={routes.HOME} component={Home} /> */}
-                          {/* <Route exact path={routes.post} component={Post} /> */}
-                          {/* <Route path={routes.post + '/:post_id/edit'} component={NewPost} /> */}
                           <Route exact path={routes.newpost} component={NewPost} />
                           <Route exact path={routes.login} component={Login} />
                           <Route exact path={routes.resetpassword} component={ResetPassword} />
                           <Route exact path={routes.signup} component={SignUp} />
                           <Route exact path={routes.home} component={Posts} />
-                          <Route component={() => (<div>{locale.RouteNotFound}</div>)} />
+                          <Route default component={() => (<div>{locale.RouteNotFound}</div>)} />
                         </Switch>
-                      </div>
+                      {/* </div> */}
                     </div>
                   </Switch>
                 )}
-                
-              {/* </div> */}
               </div>
           </BrowserRouter>
         </Provider>

@@ -85,15 +85,16 @@ export default compose(withAuthorization, withNotifications)(class FormNewPost e
     render(){
         return (
             <div className='position-relative'>
-                <div className='text-center'>Add a Post</div>
-                {this.state.image && (<div style={{
+                <div className='th-title text-center mb-2'>Add a Post</div>
+                {this.state.image && (<img src={this.state.image} className='th-post-image mb-2' alt="post header"/>)}
+                {/* {this.state.image && (<div style={{
                     width:'100%',
                     height: '20vh',
                     // position: 'relative',
                     backgroundImage: `url(${this.state.image})`,
                     backgroundPosition: 'center center',
                     // backgroundRepeat: 'no-repeat'
-                }} />)}
+                }} />)} */}
                 <Form>
                     <Row>
                         <Col md='6'>
@@ -113,14 +114,14 @@ export default compose(withAuthorization, withNotifications)(class FormNewPost e
                                 <ImageSelector titleOpenButton={locale.PostSelectImage} onCancel={(data) => console.log(data)} onAccept={(data) => this.selectedPostHeader(data[0])}>
                                     {this.state.image && <ButtonWarning className='mt-2 mr-2' onClick={(e) => this.clearPostImage(e)}>{locale.Clear}</ButtonWarning>}
                                 </ImageSelector>
-                                <Col xs='6'>
+                                {/* <Col xs='6'>
                                     {this.state.image && (
                                         <>
                                             <div>{locale.PostHeaderImage}</div>
                                             <img src={this.state.image} className='w-100' alt='Post header' />
                                         </>
                                     )}
-                                </Col>
+                                </Col> */}
                             </FormGroup>
                             <FormGroup>
                                 <ImageSelector titleOpenButton={locale.InsertAImage} onCancel={(data) => console.log(data)} onAccept={(data) => this.insertImageInPostContent(data[0])}/>

@@ -13,15 +13,15 @@ export default compose(withRouter,withStore)(class DashboardRoot extends Compone
     render(){
         return (
             <>
-                <div className='th-category-title'>{locale.Summary}</div>
+                <div className='th-title'>{locale.Summary}</div>
                 <div className='row'>
-                    <div className='col-xs-6 col-md-4 mb-1'>
+                    <div className='col-6 col-md-4 mb-1'>
                         <DashboardCard ribbon='red'>
                             <DashboardCardTitle>{locale.Posts}</DashboardCardTitle>
                             {this.props.posts.filter(post => post.publish).length}/{this.props.posts.length}
                         </DashboardCard>
                     </div>
-                    <div className='col-xs-6 col-md-4 mb-1'>
+                    <div className='col-6 col-md-4 mb-1'>
                         <DashboardCard ribbon='red'>
                             <DashboardCardTitle>{locale.Users}</DashboardCardTitle>
                             {this.props.authors.length}

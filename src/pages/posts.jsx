@@ -25,10 +25,9 @@ export default withStore(class Posts extends Component{
     render(){
         return (
             <div className='mb-4'>
-                <SignUpForm/>
-                {configBlog.blogDescription && <div className='font-italic text-muted text-center mb-4'>{configBlog.blogDescription}</div>}
+                {configBlog.blogDescription && <div className='th-blog-description mb-4'>{configBlog.blogDescription}</div>}
                 <div className='row justify-content-center mb-4'>
-                    {this.props.posts.map(post => (<div className='col-md-4 mb-2' key={post.id}>
+                    {this.props.posts.map(post => (<div className='col-6 col-md-4 mb-2' key={post.id}>
                         <PostCard {...post} authors={this.props.authors}/>
                     </div>))}
                 </div>

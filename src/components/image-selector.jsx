@@ -8,23 +8,18 @@ import locale from '../config/locale'
 export default withStore(class extends React.Component{
     constructor(props){
         super(props)
-        console.log('MUL',this.props)
         this.state = {open : false, selected : [], multiple : this.props.multiple}
     }
     select(url){
-        console.log('SELCT Image',url)
         if(!this.state.multiple && this.state.selected.length > 0 && !this.state.selected.includes(url)){
             return
         }
         const selected = this.state.selected.includes(url) ? [...this.state.selected.filter(imageID => imageID !== url)] : [...this.state.selected, url]
-        console.log(selected)
         this.setState({selected})
     }
     onAccept(){
         const { selected } = this.state
-        console.log('selected',selected)
         this.reset()
-        console.log('selected', selected)
         this.props.onAccept(selected)
     }
     onCancel(){
@@ -49,16 +44,13 @@ export default withStore(class extends React.Component{
                 <CustomModal open={this.state.open} toggle={() => this.toggle()} buttonLabel={this.props.titleOpenButton}>
                     <ModalHeader>{this.props.titleOpenButton}</ModalHeader>
                     <ModalBody>
-                        <Row className='mb-2'>
-                            {this.props.images.map(image => {
-                                console.log(image, this.state.selected.includes(image.url), this.state.selected)
-                                return (
-                                    <Col md='4' className='mb-2' key={image}>
-                                        <img className={`${this.state.selected.includes(image.url) ? 'selected-highlight' : ''} w-100`} onClick={(e) => this.select(image.url)} src={image.url} alt={image.id} />
-                                    </Col>
-                                )
-                            })}
-                        </Row>
+                        <div className='row mb-2'>
+                            {this.props.images.map(image => 
+                                <div className='col-6 col-md-4 mb-2' key={image}>
+                                    <img className={`${this.state.selected.includes(image.url) ? 'th-selected-highlight' : ''} w-100`} onClick={(e) => this.select(image.url)} src={image.url} alt={image.id} />
+                                </div>
+                            )}
+                        </div>
                     </ModalBody>
                     <ModalFooter>
                         {this.props.children}
@@ -79,7 +71,7 @@ export default withStore(class extends React.Component{
                                 console.log(image, this.state.selected.includes(image),this.state.selected)
                                 return (
                                 <Col md='4' className='mb-2' key={image}>
-                                        <img className={`${this.state.selected.includes(image) ? 'selected-highlight' : ''} w-100`} onClick={(e) => this.select(image)} src={image} alt={image} />
+                                        <img className={`${this.state.selected.includes(image) ? 'th-selected-highlight' : ''} w-100`} onClick={(e) => this.select(image)} src={image} alt={image} />
                                 </Col>
                             )})}
                         </Row>
