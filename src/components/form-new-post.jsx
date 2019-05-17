@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import { Alert, Container, Row, Col, Input, InputGroup, InputGroupAddon, Form, FormGroup, FormText} from 'reactstrap'
 
 import InputForm from './input-form' 
-import Button, { ButtonWarning, ButtonPrimary } from './button'
+import { ButtonWarning, ButtonPrimary } from './button'
 import md from '../util/markdownit'
-import withStore from '../hocs/with-store'
 import withAuthorization from '../hocs/with-authorization'
 import { compose } from 'redux'
 import ImageSelector from './image-selector'
 
-import UploadFile, {ProgressBar} from './upload-file'
-import UploaderFile from './uploader-file'
-import PostModel from '../models/post'
 import locale from '../config/locale'
-import path from 'path'
 import withNotifications from '../hocs/with-notifications'
 import ModalUploadImage from './modal-upload-image'
 
@@ -57,13 +52,14 @@ export default compose(withAuthorization, withNotifications)(class FormNewPost e
         const author = this.props.authUser.uid
         try{
             await this.props.addPost({ title, desc, content, image, author, publish })
+            const message = publish ? locale.notificationPostPubilish : locale.notificationPostDraft
+            const style = publish ? 'primary' : 'warning'
+            this.props.notiManager.add(title + ' ' + message, style)
+            this.resetForm()
         }catch(err){
             console.error('ERROR publishing post',err)
+            this.props.notiManager.add('ERROR publishing post', 'danger')
         }
-        const message = publish ? locale.notificationPostPubilish : locale.notificationPostDraft
-        const style = publish ? 'primary' : 'warning'
-        this.props.notiManager.add(title + ' ' + message, style)
-        this.resetForm()
     }
     selectedPostHeader(image){
         if(image){
@@ -78,11 +74,13 @@ export default compose(withAuthorization, withNotifications)(class FormNewPost e
         this.setState({ content })
     }
     async onFinishUploadFile(uploaded){
-        console.log('UPLOADED File',uploaded)
         const {name, url, ext} = uploaded
-        // const id = path.basename(uploaded.where, path.extname(uploaded.where))
-        await this.props.addImage({ id: name, url, ext})
-        this.props.notiManager.add(locale.FileUploaded + ': ' + name + ext, 'success')
+        try{
+            await this.props.addImage({ id: name, url, ext})
+            this.props.notiManager.add(locale.FileUploaded + ': ' + name + ext, 'success')
+        }catch(err){
+            console.error(err)
+        }
     }
     render(){
         return (
@@ -132,8 +130,8 @@ export default compose(withAuthorization, withNotifications)(class FormNewPost e
                                     <InputForm innerRef={(input) => {this.refPostContent = input}} type="textarea" labelid='post-content' labeltitle={locale.PostContent} value={this.state.content} onChange={(e) => this.handleState('content', e)} />
                                 </Col>
                             </FormGroup>
-                            <ButtonWarning className='btn-warning mr-2' onClick={(e) => this.send(e,false)}>Draft</ButtonWarning>
-                            <ButtonPrimary className='btn-primary' onClick={(e) => this.send(e, true)}>Publish</ButtonPrimary>
+                            <ButtonWarning className='mr-2' onClick={(e) => this.send(e,false)}>Draft</ButtonWarning>
+                            <ButtonPrimary className='' onClick={(e) => this.send(e, true)}>Publish</ButtonPrimary>
                         </Col>
                         <Col md='6'>
                             <div dangerouslySetInnerHTML={{ __html: md.render(this.state.content) }} />

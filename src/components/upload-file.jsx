@@ -14,17 +14,15 @@ export default class UploadFile extends Component{
     }
     uploadFile(data){
         this.setState({ start: true })
-        const { where, file, name, ext } = data
-        const uploadTask = Image.upload(where, file)
-        // const uploadTask = storage.updateFile(`posts/${PostModel.generateID(title)}.${filetype}`, file)
+        const { where, file} = data
+        const uploadTask = storage.upload(where, file)
         uploadTask.on('state_changed', (snapshot) => {
-            console.log('PROGRESS', (snapshot.bytesTransferred / snapshot.totalBytes) * 100)
             this.setState({ progress : (snapshot.bytesTransferred / snapshot.totalBytes) * 100})
         }, (err) => {this.props.onError(err)},
         async (success) => {
             const downloadURL = await uploadTask.snapshot.ref.getDownloadURL()
             this.setState({ start: false })
-            this.props.onFinish({where, url: downloadURL, name, ext})
+            this.props.onFinish({...data, url: downloadURL})
         })
     }
     onStart(where, file){
@@ -32,12 +30,10 @@ export default class UploadFile extends Component{
         this.uploadFile(this.props.data)
     }
     reset(){
-
         this.setState(this.initialState)
     }
     render(){
-        console.log('STATE',this.state)
-        return (<div>
+        return (<div className='m-2'>
             {this.state.start && 
                 (<ProgressBar value={this.state.progress}/>)
             }

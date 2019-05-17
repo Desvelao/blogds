@@ -7,15 +7,16 @@ import withNotifications from '../hocs/with-notifications'
 
 import InputForm from './input-form'
 import Alert from './alert'
-import Button from './button'
+import { ButtonPrimary } from './button'
 import routes from '../config/routes'
 import { auth, firebase } from '../backend'
 import locale from '../config/locale'
 import configBlog from '../config/blog'
+import { compose } from 'redux'
 
 const initialConfig = { email: '', displayName: '', password: '', confirmPassword: '', keypass : '', error: ''}
 
-export default withNotifications(withRouter(class FormNewPost extends Component {
+export default compose(withStore, withNotifications, withRouter)(class FormNewPost extends Component {
     constructor() {
         super()
         this.state = {...initialConfig}
@@ -32,10 +33,9 @@ export default withNotifications(withRouter(class FormNewPost extends Component 
     reset(){
         this.setState({...initialConfig})
     }
-    async signup(email, password){
-        console.log('Singingup!')
-        return;
-        await auth.signup(email, password)
+    async signUp(email, password, displayName){
+        const authUser = await auth.signUp(email, password)
+        await this.props.addAuthor({ id: authUser.user.uid, name: displayName})
         this.props.history.push(routes.dashboard + routes.dashboard_me)
     }
     async send(e) {
@@ -46,11 +46,10 @@ export default withNotifications(withRouter(class FormNewPost extends Component 
         if (!password) { return }
         if (!confirmPassword) { return }
         if (password !== confirmPassword) { return }
-        console.log('SIGNUP DATA', this.state)
         try{
             if(configBlog.requiredKeypass){
                 if(configBlog.requiredKeypass === keypass ){
-                    await this.signup(email, password)
+                    await this.signUp(email, password, displayName)
                 }else{
                     if(keypass === ''){
                         this.errorMessage(locale.errorKeypassRequired)
@@ -59,7 +58,7 @@ export default withNotifications(withRouter(class FormNewPost extends Component 
                     }
                 }
             }else{
-                await this.signup(email, password)
+                await this.signUp(email, password, displayName)
             }
         }catch(err){
 
@@ -82,43 +81,41 @@ export default withNotifications(withRouter(class FormNewPost extends Component 
     render() {
         return (
             <div>
-                <Form>
-                    <Row className='justify-content-center'>
-                        <Col md='4'>
-                            <div className='text-center'>{locale.SignUp}</div>
+                <form className='row justify-content-center'>
+                    <div className='col-md-4'>
+                        <div className='text-center th-category-title'>{locale.SignUp}</div>
+                        <FormGroup row>
+                            <div className='col-xs-12'>
+                                <InputForm labelid='email' labeltitle={locale.Email} value={this.state.email} onChange={(e) => this.handleState('email', e)} />
+                            </div>
+                        </FormGroup>
+                        <FormGroup row>
+                            <div className='col-xs-12'>
+                                <InputForm labelid='display-name' labeltitle={locale.DisplayName} value={this.state.displayName} onChange={(e) => this.handleState('displayName', e)} />
+                            </div>
+                        </FormGroup>
+                        <FormGroup row>
+                            <div className='col-xs-12'>
+                                <InputForm type='password' labelid='password' labeltitle={locale.Password} value={this.state.password} onChange={(e) => this.handleState('password', e)} />
+                            </div>
+                        </FormGroup>
+                        <FormGroup row>
+                                <InputForm type='password' labelid='confirm-password' labeltitle={locale.ConfirmPassword} value={this.state.confirmPassword} onChange={(e) => this.handleState('confirmPassword', e)} />
+                            {/* <div className='col-xs-12'>
+                            </div> */}
+                        </FormGroup>
+                        {configBlog.requiredKeypass && (
                             <FormGroup row>
-                                <Col xs='12'>
-                                    <InputForm labelid='email' labeltitle={locale.Email} value={this.state.email} onChange={(e) => this.handleState('email', e)} />
-                                </Col>
+                                <div className='col-xs-12'>
+                                    <InputForm labelid='keypass' labeltitle={locale.Keypass} value={this.state.keypass} onChange={(e) => this.handleState('keypass', e)} />
+                                </div>
                             </FormGroup>
-                            <FormGroup row>
-                                <Col xs='12'>
-                                    <InputForm labelid='display-name' labeltitle={locale.DisplayName} value={this.state.displayName} onChange={(e) => this.handleState('displayName', e)} />
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Col xs='12'>
-                                    <InputForm type='password' labelid='password' labeltitle={locale.Password} value={this.state.password} onChange={(e) => this.handleState('password', e)} />
-                                </Col>
-                            </FormGroup>
-                            <FormGroup row>
-                                <Col xs='12'>
-                                    <InputForm type='password' labelid='confirm-password' labeltitle={locale.ConfirmPassword} value={this.state.confirmPassword} onChange={(e) => this.handleState('confirmPassword', e)} />
-                                </Col>
-                            </FormGroup>
-                            {configBlog.requiredKeypass && (
-                                <FormGroup row>
-                                    <Col xs='12'>
-                                        <InputForm labelid='keypass' labeltitle={locale.Keypass} value={this.state.keypass} onChange={(e) => this.handleState('keypass', e)} />
-                                    </Col>
-                                </FormGroup>
-                            )}
-                            <Button className={`btn-primary mb-2 ${!this.validateFields() && 'disabled'}`} onClick={(e) => this.send(e)}>{locale.SignUp}</Button>
-                            {this.state.error && <Alert onRemove={() => this.onErrorValidate()} color='danger'>{this.state.error}</Alert>}
-                        </Col>
-                    </Row>
-                </Form>
+                        )}
+                        <ButtonPrimary className={`mb-2 ${!this.validateFields() && 'disabled'}`} onClick={(e) => this.send(e)}>{locale.SignUp}</ButtonPrimary>
+                        {this.state.error && <Alert onRemove={() => this.onErrorValidate()} color='danger'>{this.state.error}</Alert>}
+                    </div>
+                </form>
             </div>
         )
     }
-}))
+})

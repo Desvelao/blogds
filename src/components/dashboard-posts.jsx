@@ -3,7 +3,7 @@ import {
     Container, Row, Col, Input, InputGroup, InputGroupAddon, Form, FormGroup, FormText, Label,
     Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, NavItem
 } from 'reactstrap'
-import PostModel from '../models/post'
+import PostModel from '../backend/structures/post'
 import withStore from '../hocs/with-store'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
@@ -36,7 +36,7 @@ export default compose(withRouter, withStore, withNotifications)(class Dashboard
         return (
             <div>
                 <div className='mb-2'>
-                    <h3 className='d-inline mr-2'>Posts</h3>
+                    <span className='th-category-title mr-2'>{locale.Posts}</span>
                     <ButtonPrimary onClick={(e) => this.props.history.push(routes.newpost)}>{locale.NewPost}</ButtonPrimary>
                 </div>
                 <hr/>

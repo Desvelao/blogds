@@ -6,6 +6,7 @@ export default {
     Account: 'Account',
     Posts: 'Posts',
     Users: 'Users',
+    Authors: 'Authors',
     Me: 'Me',
     Images: 'Images',
     PostNotFound: 'Post not found',
@@ -13,6 +14,7 @@ export default {
     Password: 'Password',
     ConfirmPassword: 'Confirm password',
     ProfileUrl: 'Profile url',
+    ProfileAvatar: 'Profile avatar',
     NotPublished: 'Not published',
     Email: 'Email',
     NewPost: 'New Post',
@@ -41,6 +43,8 @@ export default {
     Cancel: 'Cancel',
     Dashboard: 'Dashboard',
     ResetPassword: 'Reset password',
-    ResetPasswordMail: 'Email to reset password sent',
-    RememberPassword: 'Remember password'
+    ResetPasswordEmail: 'Email to reset password sent',
+    RememberPassword: 'Remember password',
+    ProfileInfoUpdated : 'Info updated',
+    RouteNotFound: 'Not found'
 }

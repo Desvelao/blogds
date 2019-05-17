@@ -1,23 +1,11 @@
 import React, { Component } from 'react'
-import {
-    Container, Row, Col, Input, InputGroup, InputGroupAddon, Form, FormGroup, FormText, Label,
-    Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, NavItem, Nav
-} from 'reactstrap'
 
-import withStore from '../hocs/with-store'
-import withAuthorization from '../hocs/with-authorization'
-import { AuthorAvatar } from '../components/author'
-import Alert from '../components/alert'
-import Button from '../components/button'
-
-
-import { db } from '../backend'
-
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import routes from '../config/routes'
 
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
+import withAuthorization from '../hocs/with-authorization'
 import { withRouter } from 'react-router'
 import { compose } from 'redux'
 
@@ -57,14 +45,14 @@ export default compose(withRouter,withAuthorization)(class Dashboard extends Com
     }
     render(){
         return (
-            <Container fluid>
-                <Row className="py-3">
-                    <Col md='2' style={{ height: '100vh', width: '10%', minWidth: '80px', /*background: 'red'*/ }}>
-                        <Nav vertical>
-                            {dashlinks.map(link => (<NavItem><NavLink key={link.route} to={link.route} activeClassName="th-selected" exact>{link.text}</NavLink></NavItem>))}
-                        </Nav>
-                    </Col>
-                    <Col>
+            <div className='container-fluid'>
+                <div className="row py-3">
+                    <div className='col-md-2' style={{ height: '100vh', width: '10%', minWidth: '80px', /*background: 'red'*/ }}>
+                        <div className='nav flex-column'>
+                            {dashlinks.map(link => (<div className='nav-link' key={link.route} ><NavLink to={link.route} activeClassName="th-selected" exact>{link.text}</NavLink></div>))}
+                        </div>
+                    </div>
+                    <div className='col'>
                         {/* <Container> */}
                             <Switch>
                                 <Route exact path={routes.dashboard + routes.dashboard_root} component={DashboardRoot} />
@@ -74,9 +62,9 @@ export default compose(withRouter,withAuthorization)(class Dashboard extends Com
                                 <Route exact path={routes.dashboard + routes.dashboard_images} component={DashboardImages} />
                             </Switch>
                         {/* </Container> */}
-                    </Col>
-                </Row>
-            </Container>
+                    </div>
+                </div>
+            </div>
         )
     }
 })

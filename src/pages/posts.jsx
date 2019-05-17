@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Row, Col } from 'reactstrap'
 import withStore from "../hocs/with-store";
 import PostCard from '../components/post-card'
-import Button from '../components/button'
+import { ButtonPrimary } from '../components/button'
 import FooterHome from '../components/footer-home';
 import configBlog from '../config/blog'
 import locale from '../config/locale'
@@ -28,13 +27,13 @@ export default withStore(class Posts extends Component{
             <div className='mb-4'>
                 <SignUpForm/>
                 {configBlog.blogDescription && <div className='font-italic text-muted text-center mb-4'>{configBlog.blogDescription}</div>}
-                <Row className='justify-content-center mb-4'>
-                    {this.props.posts.map(post => (<Col className='mb-2' md='4' key={post.id}>
+                <div className='row justify-content-center mb-4'>
+                    {this.props.posts.map(post => (<div className='col-md-4 mb-2' key={post.id}>
                         <PostCard {...post} authors={this.props.authors}/>
-                    </Col>))}
-                </Row>
+                    </div>))}
+                </div>
                 <div className='text-center'>
-                    {this.state.loading ? <Loading className='text-center' /> : <Button className='' onClick={(e) => this.paginationPosts(e)}>{locale.MorePosts}</Button>}
+                    {this.state.loading ? <Loading className='text-center' /> : <ButtonPrimary className='' onClick={(e) => this.paginationPosts(e)}>{locale.MorePosts}</ButtonPrimary>}
                 </div>
                 <FooterHome/>
             </div>

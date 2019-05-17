@@ -1,0 +1,19 @@
+$color-text: black;
+$color-muted: #6c757d;
+$color-primary: #007bff;
+$color-secondary: #6c757d;
+$color-terciary: yellow;
+$color-success: #28a745;
+$color-warning: #ffc107;
+$color-danger: #dc3545;
+
+$colors: (
+    text: $color-text,
+    muted: $color-muted,
+    primary: $color-primary,
+    secondary: $color-secondary,
+    terciary: $color-terciary,
+    success: $color-success,
+    warning: $color-warning,
+    danger: $color-danger
+)

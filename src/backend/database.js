@@ -1,6 +1,6 @@
-import PostModel from '../models/post'
-import AuthorModel from '../models/author'
-import ImageModel from '../models/image'
+import PostModel from '../backend/structures/post'
+import AuthorModel from '../backend/structures/author'
+import ImageModel from '../backend/structures/image'
 
 export default class Database{
     constructor(firebase){

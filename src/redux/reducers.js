@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import actiontypes from './actiontypes'
-import sampledata from '../sampledata'
+
 import { sortPosts } from '../util/post'
 
 const authUser = (state = null /* null */, action) => {
@@ -13,7 +13,7 @@ const authUser = (state = null /* null */, action) => {
     }
 }
 
-const posts = (state = []/*sampledata.posts*/ /*[]*/, action) => {
+const posts = (state = [], action) => {
     switch (action.type) {
         case (actiontypes.addPost):{
             const data = [...state.filter(post => post.id !== action.post.id), action.post]
@@ -32,7 +32,7 @@ const posts = (state = []/*sampledata.posts*/ /*[]*/, action) => {
     }
 }
 
-const authors = (state = []/*sampledata.authors*//*[]*/, action) => {
+const authors = (state = [], action) => {
     switch (action.type) {
         case (actiontypes.addAuthor):
             return [...state.filter(author => author.id !== action.author.id), action.author]

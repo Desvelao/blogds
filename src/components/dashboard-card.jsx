@@ -3,10 +3,10 @@ import React from 'react'
 
 export const DashboardCard = ({ ribbon = '', children, className = ''}) => {
     return (
-        <div className={`ds-card ${className} ${ribbon ? `ds-card-ribbon ds-card-ribbon-${ribbon}` : ''}`}>
+        <div className={`card p-2 ${className}`}>
             {children}
         </div>
     )
 }
 
-export const DashboardCardTitle = (props) => (<div {...props} className='ds-card-title'>{props.children}</div>)
+export const DashboardCardTitle = (props) => (<div {...props} className='th-category-title'>{props.children}</div>)

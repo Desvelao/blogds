@@ -9,7 +9,7 @@ import { compose } from 'redux'
 import routes from '../config/routes'
 import Button from './button'
 import { auth } from '../backend'
-import AuthorModel from '../models/author'
+import AuthorModel from '../backend/structures/author'
 import locale from '../config/locale'
 
 export default compose(withRouter, withAuth, withAuthorization)(class extends Component{

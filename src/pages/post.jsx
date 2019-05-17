@@ -1,5 +1,4 @@
 import React, {Component } from 'react';
-import { Container, Row, Col } from 'reactstrap'
 
 import RenderPost from '../components/renderpost.jsx'
 import withStore from '../hocs/with-store.jsx';

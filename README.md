@@ -19,4 +19,4 @@ It uses:
 - Edit, delete user posts.
 - Upload images to use in the posts.
 - Update user info.
-- Include [Boostrap](https://getbootstrap.com/) CSS.
+- Include [Bootstrap](https://getbootstrap.com/) CSS.

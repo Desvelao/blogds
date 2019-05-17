@@ -10,5 +10,6 @@ export default {
     dashboard_me: '/me',
     dashboard_root: '/',
     dashboard_images: '/images',
-    resetpassword: '/resetpassword'
+    resetpassword: '/resetpassword',
+    signup: '/signup'
 }

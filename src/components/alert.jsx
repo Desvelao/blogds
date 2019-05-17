@@ -12,9 +12,9 @@ export default class extends Component{
     }
     render(){
         return (
-            <React.Fragment>
-                <Alert {...this.props}>{this.props.children}</Alert>
-            </React.Fragment>
+            <>
+                <div className={`th-alert-${this.props.color} ${this.props.className}`}>{this.props.children}</div>
+            </>
         )
     }
 

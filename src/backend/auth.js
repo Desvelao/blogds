@@ -6,7 +6,8 @@ export default class Auth{
     async signUp(email, password){
         try{
             const user = await this.auth.createUserWithEmailAndPassword(email, password)
-            console.log('Successfull sign up',user)
+            console.log('Successfull sign up', user)
+            return user
         }catch(err){
             console.error('Error sign up', err)
             throw err

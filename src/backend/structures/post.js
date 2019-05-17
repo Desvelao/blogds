@@ -1,4 +1,5 @@
 import factoryStructure from './base'
+import { postDate } from '../../util/date'
 const Base = factoryStructure('posts')
 
 export default class Post extends Base{
@@ -27,10 +28,16 @@ export default class Post extends Base{
         return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`
     }
     static fromDBToApp(post){
-        console.log('edit',post.data())
         return { id: post.id, ...post.data(),
             edit: post.data().edit && Post.dateFormat(post.data().edit.seconds*1000),
             publish: post.data().publish && Post.dateFormat(post.data().publish.seconds*1000),
         }
+    }
+    static getWithAuthor(post, authors){
+        const { ...postWithAuthor } = post
+        const author = authors.find(author => author.id === post.author)
+        postWithAuthor.publish = postWithAuthor.publish ? postDate(postWithAuthor.publish) : postWithAuthor.publish
+        postWithAuthor.edit = postWithAuthor.edit ? postDate(postWithAuthor.edit) : postWithAuthor.edit
+        return { ...postWithAuthor, author }
     }
 }

@@ -34,7 +34,8 @@ export default class extends Component{
         const { file } = this.state
         console.log('FILE',file)
         const { name, ext } = this.manageFilename(file)
-        return { where: `${name}${ext}`, file, name, ext }
+        const folder = this.props.saveOn || ''
+        return { where: `${this.props.saveOn ? this.props.saveOn + '/' : ''}${name}${ext}`, file, name, ext, folder }
     }
     onFinishUpload(uploaded){
         this.reset()

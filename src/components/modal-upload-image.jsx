@@ -13,15 +13,9 @@ export default withStore(class extends Component{
     }
     async onFinishUploadFile(uploaded) {
         this.closeModal()
-        if(this.props.onFinishUploadFile){
-            if (this.props.onFinishUploadFile) {
-                this.props.onFinishUploadFile(uploaded)
-            }
+        if (this.props.onFinishUploadFile) {
+            this.props.onFinishUploadFile(uploaded)
         }
-        // console.log('UPLOADED FILEDDDDDD', uploaded)
-        // const { name, url, ext } = uploaded
-        // // const id = path.basename(uploaded.where, path.extname(uploaded.where))
-        // await this.props.addImage({ id: name, url, ext })
     }
     onAccept(){
         if(this.props.onAccept){
@@ -46,7 +40,7 @@ export default withStore(class extends Component{
                 <CustomModal open={this.state.open} toggle={() => this.toggle()} buttonLabel={this.props.titleOpenButton}>
                     <ModalHeader>{this.props.titleOpenButton}</ModalHeader>
                     <ModalBody>
-                        <UploaderFile accept='image/png,image/jpeg' saveOn={this.props.saveOn} labelid='upload-post-image' labeltitle={this.props.labeltitle} onFinish={(uploaded) => this.onFinishUploadFile(uploaded)} onError={(err) => console.error(err)} />
+                        <UploaderFile accept='image/png,image/jpeg' saveOn={this.props.saveOn} labelid='upload-post-image' labeltitle={this.props.labeltitle} onFinish={(uploaded) => this.onFinishUploadFile(uploaded)} onError={(err) => console.error(err)} manageFilename={this.props.manageFilename}/>
                     </ModalBody>
                     <ModalFooter>
                         {this.props.children}

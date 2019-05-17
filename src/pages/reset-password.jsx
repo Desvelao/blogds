@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Row, Col, Form, FormGroup } from 'reactstrap'
 import InputForm from '../components/input-form'
 import { auth } from '../backend'
 import locale from '../config/locale'
@@ -30,17 +29,17 @@ export default withNotifications(class extends Component{
     }
     render(){
         return (
-            <Row className='justify-content-center'>
-                <Col md='4'>
+            <div className='row justify-content-center'>
+                <div className='cold-md-4'>
                     <div className='mb-2 text-center'>{locale.ResetPassword}</div>
-                    <Form>
-                        <FormGroup>
+                    <form>
+                        <div className='form-group'>
                             <InputForm className='mb-2' labelid='reset-password' labeltitle={locale.Email} type='text' placeholder={''} value={this.state.email} onChange={(e) => this.inputChange('email', e)} />
-                        </FormGroup>
+                        </div>
                         <ButtonPrimary onClick={(e) => this.resetPassword(e)} disabled={!this.validateEmail(this.state.email)}>{locale.ResetPassword}</ButtonPrimary>
-                    </Form>
-                </Col>
-            </Row>
+                    </form>
+                </div>
+            </div>
         )
     }
 })

@@ -12,4 +12,7 @@ export default class Storage{
     deleteFile(where){
         return this.bucket.ref(where).delete()
     }
+    upload(where, file){
+        return this.bucket.ref(where).put(file)
+    }
 }

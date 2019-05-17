@@ -64,15 +64,13 @@ export const withNotifications = (Component) => class extends React.Component {
 export const NotificationsComponent = withNotifications(class extends React.Component {
     constructor(props) {
         super(props)
-        console.log('NOT MANAGER', this.props)
     }
     render() {
-        console.log('Render Notifications', this.props.notiManager)
         return (
             <div className='position-fixed' style={{ top: '2em', right: '2em' }}>
                 {this.props.notiManager.map((notification, index) => {
                     return (<Alert key={`notification-${index}`} color={notification.style}>
-                        <div>{notification.text}</div>
+                        {notification.text}
                     </Alert>)
                 })}
             </div>
