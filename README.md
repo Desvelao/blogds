@@ -20,3 +20,13 @@ It uses:
 - Upload images to use in the posts.
 - Update user info.
 - Include [Bootstrap](https://getbootstrap.com/) CSS.
+
+## Install
+
+Clone this repository and install dependencies.
+
+```bash
+npm install
+```
+
+Rename `example-config` folder to `config` and configure the blog. Require Firebase configuration `config/firebase.js`. 
