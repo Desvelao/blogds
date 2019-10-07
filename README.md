@@ -1,4 +1,4 @@
-Note: **Work in progress** Not functional
+Note: **Work in progress**
 
 # BlogDS
 
@@ -7,7 +7,7 @@ Create a colaborative blog served as static web but works as dynamic without ser
 It uses:
 - [ReactJS](https://reactjs.org) - User interface
 - [Redux](https://react-redux.js.org) - App State
-- [Firebase](https://firebase.google.com) - User authentication, database and storage
+- [Firebase](https://firebase.google.com) - User authentication, database and image storage
 - [Reactstrap](https://reactstrap.github.io) - ReactJS Components based on Bootstrap
 - [FontAwesome](https://fontawesome.com/)
 
@@ -21,7 +21,7 @@ It uses:
 - Update user info.
 - Include [Bootstrap](https://getbootstrap.com/) CSS.
 
-## Install
+## Install and configuration
 
 Clone this repository and install dependencies.
 
@@ -29,4 +29,6 @@ Clone this repository and install dependencies.
 npm install
 ```
 
-Rename `example-config` folder to `config` and configure the blog. Require Firebase configuration `config/firebase.js`. 
+Rename `example-config` folder to `config` and configure the blog.
+
+Require Firebase configuration `config/firebase.js`. 
