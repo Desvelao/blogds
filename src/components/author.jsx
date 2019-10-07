@@ -1,5 +1,5 @@
 import React from 'react'
-import authorAvatarDefault from '../config/assets/author_avatar_default.jpg'
+import authorAvatarDefault from '../config/assets/author_avatar_default.png'
 
 export const AuthorAvatar = ({ avatar, name, className='', hovername = false}) =>
     (<img className={`th-author-avatar ${className}`} title={hovername ? name : ''} src={avatar} onError={(e) => {e.target.onError = null; e.target.src=authorAvatarDefault}} alt={`${name}'s avatar`}/>)

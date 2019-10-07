@@ -10,9 +10,9 @@ export default withRouter(
         author = Author.findByID(author, authors)
         const timeRead = timeToRead(content)
         return (
-            <div className="th-card">
+            <div className="th-card card">
                 {image && <Link to={`/post/${id}`} className='text-decoration-none'>
-                    <img className='th-card-image' src={image} alt={`${title}`} onError={(e) => { e.target.onError = null; e.target.src = "" }}/>
+                    <img className='th-card-image img-fluid' src={image} alt={`${title}`} onError={(e) => { e.target.onError = null; e.target.src = "" }}/>
                 </Link>}
                 <div className='th-card-body'>
                     <Link to={`/post/${id}`} className='th-card-title'>{title}</Link>

@@ -78,7 +78,30 @@ body{
 .th-post-timedate{
     @extend .th-color-muted
 }
+.th-post-image{
+    height: 10em;
+    width: 100%;
+    object-fit: cover;
+}
 
+.th-card-body{
+    margin: 0.5em;
+}
+
+.th-card-image{
+    height: 7em;
+    width: 100%;
+    object-fit: cover;
+}
+
+.th-loading{
+    width: 6em;
+}
+
+.th-author-avatar{
+    height: 2em;
+    border-radius: 50%;
+}
 .ds-card{
     border-radius: 0.5em;
     padding: 0.5em;

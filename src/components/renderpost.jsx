@@ -6,10 +6,9 @@ import { AuthorAvatarName } from './author'
 import { Container } from 'reactstrap'
 import FooterOtherPosts from './footer-other-posts'
 
-const RenderPost = ({ id, title, desc, content, image, publish, author }) => {
+export default ({ id, title, desc, content, image, publish, author }) => {
     const timeRead = timeToRead(content)
     const date = publish ? postDate(publish) : ''
-    console.log(author)
     return (
         <div className=''>
             {image && <img src={image} className='th-post-image' alt="post header" />}
@@ -36,5 +35,3 @@ const RenderPost = ({ id, title, desc, content, image, publish, author }) => {
         </div>
     )
 }
-
-export default RenderPost
