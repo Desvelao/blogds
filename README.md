@@ -2,7 +2,7 @@ Note: **Work in progress**
 
 # BlogDS
 
-Create a colaborative blog served as static web but works as dynamic without server.
+Create a colaborative blog served as static web but works as dynamic without server. Not finished.
 
 It uses:
 - [ReactJS](https://reactjs.org) - User interface
